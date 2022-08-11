@@ -382,23 +382,35 @@ memberInfo.changeName()
 // 숙제 2
 type ChangeStr = {
   cutZero :(str :string) => string,
-  removeDash :(str :string) => number,
+  removeDash :(str :string) => number
 }
-
 let funcObj :ChangeStr = {
   cutZero(str) {
     if(typeof str === 'string') {
       if(str.charAt(0) === '0') {
         return str.replace(/^0+/, "")
+      } else {
+        return 'string만 리턴한다구요'
       }
+    } else {
+      return 'string만 리턴합니다.'
     }
   },
   removeDash(str) {
     return Number(str.replace('-', ''))
-  },
+  }
 }
 funcObj.cutZero('가나다라')
 funcObj.removeDash('10101-')
+
+// 숙제용 함수
+type 숙제 = {
+  msg :string, 
+  cut :ChangeStr["cutZero"], 
+  remove: ChangeStr["removeDash"]
+}
+
+
 
 
 
