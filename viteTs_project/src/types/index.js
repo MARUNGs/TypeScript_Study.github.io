@@ -237,30 +237,191 @@ let memberInfo = {
 };
 memberInfo.plusOne(1);
 memberInfo.changeName();
-let funcObj = {
-    cutZero(str) {
-        if (typeof str === 'string') {
-            if (str.charAt(0) === '0') {
-                return str.replace(/^0+/, "");
+let cutZero = function (param1) {
+    return param1.replace(/^0+/, "");
+};
+let removeDash = function (param2) {
+    return Number(param2.replaceAll('-', ''));
+};
+function 만들함수(str, fn1, fn2) {
+    console.log(fn2(fn1(str)));
+}
+만들함수('010-1111-2222', cutZero, removeDash);
+// ------------------------------------------------------------------------------------------------------
+/*
+// id를 잘못 찾았을 때 null이 들어오고 잘 찾아오면 element가 들어오니
+// 타입스크립트 입장에서는 확실치 않아서 에러를 나타낸다. Narrowing 작업할 것
+let title = document.querySelector('#title')
+
+// [Narowwing 방법 1] - not null
+if(title != null) {
+  title.innerHTML = '하이루'
+}
+
+// [Narowwing 방법 2] - instanceof
+if(title instanceof Element) {
+  title.innerHTML = '하이루'
+}
+
+// [Narowwing 방법 3] - as 키워드 이용 : 왼쪽의 요소를 오른쪽 타입으로 바꾸기
+let title2 = document.querySelector('#title') as Element // 비상 키워드..
+title2.innerHTML = '하이루'
+
+// [Narowwing 방법 4] - Optional Chaning(?)
+if(title2?.innerHTML != undefined) { // title2에 innerHTML이 있으면 출력, 업승면 undefined
+  title2.innerHTML = '하이루'
+}
+
+// [Narowwing 방법 5] - tsconfig.json 파일의 strict: false 설정하면 가능
+
+
+let link = document.querySelector('.link')
+if(link instanceof HTMLAnchorElement) {
+  link.href='https://kakao.com'
+}
+
+// 타입스크립트에서 eventListener 부착하기
+let btn = document.querySelector('#button')
+btn?.addEventListener('click', function() {
+  // 코드실행...
+})
+*/
+// ------------------------------------------------------------------------------------------------------
+// JS의 class 문법을 배워보자
+// 옛 문법
+function 기계(q) {
+    // this.q = q;
+    // this.w = 'snowball';
+}
+// var nono = new 기계('consume')
+// ES6 문법
+// class Hero {
+//   constroctor(q, w) {
+//     this.q = '구멍'
+//     this.w = 'snowball'
+//   }
+// }
+// ------------------------------------------------------------------------------------------------------
+// 타입스크립트는 필드값이 설정되어야 property 설정이 가능하다.
+class Persoon {
+    // 1. 필드에서도 타입지정 가능
+    name;
+    age;
+    // 2. property 설정 가능
+    // return 타입은 지정하지 않는다. : 복제되는 것이 항상 object이기 때문이다.
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    // prototype 넣는 자리는 여기
+    함수(a) {
+        console.log('hey' + a);
+    }
+}
+let person1 = new Persoon('Yoo', 20);
+let person2 = new Persoon('Kim', 30);
+person1.함수('하하하하하');
+// 숙제 1
+class Car {
+    model;
+    price;
+    constructor(model, price) {
+        this.model = model;
+        this.price = price;
+    }
+    tax() {
+        return this.price * 0.1;
+    }
+}
+let car = new Car('소나타', 3000);
+console.log(car.tax());
+// 숙제 2
+class Word {
+    num;
+    str;
+    constructor(...param) {
+        let nums = [];
+        let strs = [];
+        param.forEach((pro) => {
+            if (typeof pro === 'number') {
+                nums.push(pro);
+            }
+            else {
+                strs.push(pro);
+            }
+        });
+        this.num = nums;
+        this.str = strs;
+    }
+}
+let word = new Word('123', 3, 5, 'ABC');
+console.log(word.num);
+let nemo = { color: 'red', width: 100 };
+let 학생 = {
+    name: 'kim'
+};
+let 선생 = {
+    name: 'kim',
+    age: 20
+};
+// interface로 중복선언하면 항목을 누적으로 갖게 된다 
+// -> abcde { name :string, age? :number, score :number }
+// interface는 주로 외부 라이브러리에서 많이 사용한다.
+// -> 다른 이용자가 많이 사용할 것 같다 싶으면 object 타입 정할 때 interface로 선언하는 것이 편하다.
+// (1) extends 쓸 때 중복 속성이 발생하면 에러로 잡아준다.
+// (2) & extends를 쓸 땐 미리 에러가 나지 않아서 주의해야 한다.
+//    --> &는 합치는 것이 아닌, 왼쪽과 오른쪽 둘다 만족하는 타입을 의미한다.
+// ------------------------------------------------------------------------------------------------------
+// [ rest parameter ] ? 몇개의 파라미터가 들어올지 아직 모를 때 ...파라미터명 이라고 작성한다.
+// 다른 파라미터가 있으면 맨 뒤에 사용해야 한다.
+// rest parameter에 들어온 데이터는 전부 array에 담아준다.
+// 그럼 rest parameter 타입은 어떻게 지정해주나?
+function 하암수(...a) {
+    console.log(a);
+}
+하암수(1, 5, 3, 5, 6, 7);
+let arr = [1, 2, 3];
+let arr2 = [4, 5];
+let arr3 = [...arr, ...arr2]; // spread operator 문법: 괄호 벗겨주세요
+// destructuring 문법을 이용한 함수 파라미터 설정
+let { student, aaggee } = { student: true, aaggee: 20 };
+let 오브젝트 = { student: true, aaggee: 20 };
+function Test10({ student, aaggee }) {
+    console.log(student, aaggee);
+}
+Test10({ student: true, aaggee: 20 });
+// Test10(오브젝트)
+// 숙제 1
+function 최대값반환(...num) {
+    let maxNum = 0;
+    num.forEach((i) => {
+        if (i > 0) {
+            (!maxNum) && (maxNum = i);
+            if (maxNum < i) {
+                maxNum = i;
             }
         }
-    },
-    removeDash(str) {
-        return Number(str.replace('-', ''));
-    },
-};
-funcObj.cutZero('가나다라');
-funcObj.removeDash('10101-');
-// 숙제 3
-function fn1(param) {
-    return param;
+        else {
+            return; // 다음 값으로 넘어가기
+        }
+    });
+    return maxNum;
 }
-function fn2(param2) {
-    return Number(param2);
+console.log(최대값반환(6, 3, 7, 2));
+function Object파라미터({ user, comment, admin }) {
+    console.log(user, comment, admin);
 }
-function 함수들(str, fn1, fn2) {
-    let returnStr = fn1(str);
-    console.log(fn2(returnStr));
+Object파라미터({ user: 'kim', comment: [3, 5, 4], admin: false });
+console.log('--------------------------------------------------');
+// 숙제 3 -- 이거 내 풀이
+function 숙제하암수(...array) {
+    array.forEach((i) => {
+        console.log(i);
+    });
 }
-함수들('010-1111-2222', fn1, fn2);
+숙제하암수([40, 'wine', false]);
+function 숙제3정답([a, b, c]) {
+    console.log(a, b, c);
+}
+숙제3정답([40, 'wine', false]);
 //# sourceMappingURL=index.js.map
