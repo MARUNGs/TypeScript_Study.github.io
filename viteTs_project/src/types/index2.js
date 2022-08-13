@@ -81,9 +81,97 @@ class NewUserr extends Userr {
 }
 // static - 부모 class에 직접 부여된다 (자식에게는 안 물려줌)
 class UUU {
-    static x = 10;
+    static x = 10; // 부모만 가져다가 쓸 수 있다.
     y = 20;
 }
 let nnn = new UUU();
-console.log(nnn);
+console.log(UUU.x); // 부모를 직접 호출해야 static 변수 사용이 가능하다.
+// (private | protected | public) + static 사용이 가능하다
+class 섞어서사용가능 {
+    static x = 10;
+}
+// 주로 언제 사용할까?
+class UUUu {
+    static skill = 'js';
+    intro = UUUu.skill + '전문가입니다.';
+}
+let 철수 = new UUUu();
+console.log(철수);
+UUUu.skill = 'ts'; // 중간에 중요한 정보를 안전하게 수정할 수 있다.
+let 철수2 = new UUUu();
+console.log(철수2);
+// 숙제
+class A {
+    static x = 10;
+    static y = 10;
+    constructor(x, y) {
+        A.x = x;
+        A.y = y;
+    }
+    static printX() {
+        console.log("-----" + A.x + "-----");
+    }
+    static addOne(num) {
+        A.x + num;
+    }
+}
+A.addOne(3);
+A.addOne(10);
+A.printX();
+let 변수 = 'park';
+console.log(변수);
+let car1 = {
+    wheel: 10,
+    model: 'abc'
+};
+let bike2 = {
+    wheel: 2,
+    model: 'eee'
+};
+let fnabc = function () {
+    console.log('ㅎㅅㅎ');
+};
+fnabc();
+;
+let dog1 = 'bark';
+let dog2 = { name: 'paw' };
+// ------------------------------------------------------------------------------------------------
+// generic : 파라미터로 타입을 입력하는 함수
+// 함수의 반환타입을 유추할 수 있는 어려움이 있다. 이럴 땐 generic을 이용한다.
+// 장점 : Narrowing 확장성이 있음
+function fnG(x) {
+    return x[0];
+}
+let aa = fnG([4, 2]);
+console.log(aa);
+// 1. 타입 파라미터 제한두기 : extends
+// function minusOne<Minus extends number>(x :Minus) {
+function minusOne(x) {
+    // return x - 1
+    return x.length;
+}
+// let minus = minusOne<number>(100)
+let minus = minusOne(['100']);
+console.log('---------------------------------------');
+// 숙제 1
+function 숙제0001(str) {
+    console.log(str.length);
+}
+숙제0001('hello');
+숙제0001(['kim', 'park']);
+let data = '{"name" : "dog", "age" : 1}';
+function ConversionJson(data) {
+    return JSON.parse(data);
+}
+let conJson = ConversionJson(data);
+console.log(conJson);
+// 숙제3 class 수정
+class P {
+    name;
+    constructor(a) {
+        this.name = a;
+    }
+}
+let abcde = new P('문자열 삽입');
+abcde.name;
 //# sourceMappingURL=index2.js.map
