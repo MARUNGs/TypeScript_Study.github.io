@@ -174,4 +174,6 @@ class P {
 }
 let abcde = new P('문자열 삽입');
 abcde.name;
+// --------------------------------------------------------------
+export var indexA = 10;
 //# sourceMappingURL=index2.js.map

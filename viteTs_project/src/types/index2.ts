@@ -268,3 +268,13 @@ class P<T> {
 }
 let abcde = new P<string>('문자열 삽입')
 abcde.name
+
+
+
+
+
+
+
+
+// --------------------------------------------------------------
+export var indexA = 10
