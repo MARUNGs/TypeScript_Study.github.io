@@ -1,3 +1,6 @@
+export {}
+
+
 // 1. null & undefined를 쉽게 Narrowing 하여 거를 수 있음 &&
 export let a = function(a :string | undefined) {
   if(a && typeof a === 'string') {
@@ -277,4 +280,5 @@ abcde.name
 
 
 // --------------------------------------------------------------
-export var indexA = 10
+let indexA = 10;
+export default indexA

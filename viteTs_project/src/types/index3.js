@@ -1,4 +1,3 @@
-export let 여기보세요 = '';
 // ----------------------------------------------------------------------------
 // array 자료에 붙일 수 있는 tuple type
 // -> 위치까지 고려한 타입을 지정할 수 있다.
@@ -16,6 +15,10 @@ let arr = [1, 2, 3];
 let arr2 = [4, 5, ...arr]; // sread operator
 let 오늘내가먹은음식 = ['컵라면', 1500, true];
 let 이런자료는어떤타입 = ['컵라면', 1500, true, true, true, false, true];
+console.log(dataA + 1);
+// ts 파일끼리 변수를 가져다가 쓰고 싶다면?
+import indexA from './index2';
+console.log(indexA);
 let age;
 let user = {
     name: 'kim',

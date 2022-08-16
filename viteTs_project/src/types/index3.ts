@@ -1,5 +1,3 @@
-export let 여기보세요 = ''
-
 // ----------------------------------------------------------------------------
 
 // array 자료에 붙일 수 있는 tuple type
@@ -34,12 +32,15 @@ let 이런자료는어떤타입 :FoodType = ['컵라면', 1500, true, true, true
 // ---------------------------------------------------------------------------------------------
 
 // declare : js에 있는 변수를 ts에서 이용할 때 사용(재정의 해야한다!)
-// declare let dataA :string
-// console.log(dataA + 1)
+declare let dataA :string
+console.log(dataA + 1)
 
 // ts 파일끼리 변수를 가져다가 쓰고 싶다면?
-// import { indexA } from './index2'
-// console.log(indexA)
+import indexA from './index2.js' 
+// .js 를 쓰는 이유 : 터미널에서 tsc -w 명령어를 씀으로써 자동 컴파일이 되도록 취하였는데,
+// 자바스크립트 입장에서는 .ts인지 .js인지 알 수 없어서 불러올 수 없는 오류가 있었다.
+// 이 명령어를 쓸 때는 명확하게 확장자까지 작성해야 한다.
+console.log(indexA)
 
 
 // ts 파일의 이상한 특징 : ambient module (글로벌 모듈)
